@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!--引入外部文件清除默认样式-->
+		<link rel="stylesheet" type="text/css" href="css/reset_min.css"/>
+		<!--引入外部文件设置首页index样式-->
+		<link rel="stylesheet" type="text/css" href="css/page_index_min.css"/>
+		<script type="text/javascript" src="js/tools_min.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * 设置banner切换图片（自动切换以及按钮切换）
+				 */
+				var imgDiv = document.getElementById("imgDiv");
+				
+				
+				var imgArr = document.querySelectorAll(".img");
+				
+				
+				imgDiv.style.width = 940*imgArr.length+"px";
+				
+				
+				var index = 0;
+				
+				var allA = document.querySelectorAll(".a");
+				
+				allA[index].style.background = "url(img/sprite.png) no-repeat -27px 0px";
+				
+			
+				for(var i=0; i<allA.length ; i++){
+					
+					
+					allA[i].num = i;
+					
+					
+					allA[i].onclick = function(){
+						
+						
+						clearInterval(timer);
+						
+						index = this.num;
+						//console.log(index);
+						
+					
+						setA();
+						
+						//使用move函数来切换图片
+						move(imgDiv , "left" , -940*index , 20 , function(){
+							
+							autoChange();
+							
+						});
+						
+					};
+				}
+				//开启自动切换图片
+				autoChange();
+				
+				function setA(){
+					
+					
+					if(index >= imgArr.length - 1){
+						
+						index = 0;
+						
+						imgDiv.style.left = 0;
+					}
+					
+					
+					for(var i=0 ; i<allA.length ; i++){
+						allA[i].style.background = "";
+						
+					}
+
+					allA[index].style.background = "url(img/sprite.png) no-repeat -27px 0px";
+				};
+				
+				
+				var timer;
+				
+				function autoChange(){
+					
+					
+					timer = setInterval(function(){
+						
+						
+						index++;
+						
+						
+						index %= imgArr.length;
+						
+					
+						move(imgDiv , "left" , -940*index , 20 , function(){
+							
+							setA();
+						});
+						
+					},3000);
+					
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<!--header开始-->
+		<div class="header w">
+			<div class="nav">
+				<ul>
+					<li>
+						<a href="#">HOME</a>
+						<p class="p">Back to home</p>
+					</li>
+					
+					<li>
+						<a href="#">PRODUCTS</a>
+						<p class="p">What we have for you</p>
+					</li>
+					
+					<li>
+						<a href="#">SERVICES</a>
+						<p class="p">Things we do</p>
+					</li>
+					
+					<li>
+						<a href="#">BLOG</a>
+						<p class="p">Follow our updates</p>
+					</li>
+					
+					<li>
+						<a href="#">CONTACT</a>
+						<p class="p">Ways to reach us</p>
+					</li>
+					
+				</ul>
+			</div>
+			<div class="logo">
+				<img src="img/logo.png" title="polo360"/>
+			</div>
+
+		</div>
+		<!--header结束-->
+		
+		<!--banner开始-->
+		<div class="banner w">
+			<!--设置banner图片-->
+			<div id="imgDiv">
+				<img class="img" src="img/banner/banner01.png" alt="banner"/>
+				<img class="img" src="img/banner/banner02.png" alt="banner"/>
+				<img class="img" src="img/banner/banner03.png" alt="banner"/>
+				<img class="img" src="img/banner/banner04.png" alt="banner"/>
+				<img class="img" src="img/banner/banner05.png" alt="banner"/>
+				<img class="img" src="img/banner/banner01.png" alt="banner"/>
+			</div>
+			
+			<!--设置图片按钮-->
+			<div class="pointerDiv">
+			<a class="a" href="javascript:;"></a>
+			<a class="a" href="javascript:;"></a>
+			<a class="a" href="javascript:;"></a>
+			<a class="a" href="javascript:;"></a>
+			<a class="a" href="javascript:;"></a>
+			</div>
+		</div>
+		<!--banner结束-->
+		
+		<!--content开始-->
+		<div class="content w clearfix">
+			<h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h1>
+			<!--分别设置3个div-->
+			<div class="p">
+				<h2>Perfect Logic</h2>
+				<p class="p1">All you want your website to do.</p>
+				<div class="imgDiv">
+					<img src="img/pic/pic1.jpg"/>
+				</div>
+				<p class="p2">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+				<a class="lm" href="#">Learn More</a>
+			</div>	
+			
+			<div class="p h">
+				<h2>Complete Solution</h2>
+				<p class="p1">A tool anything and everything you can think</p>
+				<div class="imgDiv">
+					<img src="img/pic/pic2.jpg"/>
+				</div>
+				<p class="p2">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciun tdolore magnam aliquam quaerat voluptatem.</p>
+				<a class="lm" href="#">Learn More</a>
+			</div>	
+			
+			<div class="p">
+				<h2>Uber Culture</h2>
+				<p class="p1">Fresh. Modern and ready for future</p>
+				<div class="imgDiv">
+					<img src="img/pic/pic3.jpg"/>
+				</div>
+				<p class="p2">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+				<a class="lm" href="#">Learn More</a>
+			</div>	
+			
+		</div>
+		<!--content结束-->
+		
+		<!--form 开始-->
+		<div class="form w clearfix">
+			<!--左侧一栏-->
+			<div class="p">
+				<h2>Social Connection</h2>
+				<p class="p1">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
+				<div class="icon">
+					<a href="#"><img src="img/rss.png"/></a>
+					<a href="#"><img src="img/fb.png"/></a>
+					<a href="#"><img src="img/in.png"/></a>
+					<a href="#"><img src="img/yt.png"/></a>
+					<a href="#"><img src="img/tw.png"/></a>
+				</div>
+				<h3>Newsletter</h3>
+				<p class="p1">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
+				<form action="#">
+					<input class="txt no" type="text" placeholder="your email address"/>
+					<button class="btn">Subscribe</button>
+				</form>
+			</div>
+			<!--中间一栏-->
+			<div class="p h">
+				<h2>Contact</h2>
+				<form action="#">
+					<input class="txt" type="text" placeholder="your name"/>
+					<input class="txt" type="text" placeholder="your email address"/>
+					<textarea class="tarea" placeholder="message"></textarea>
+					<button class="btn">Send it</button>
+				</form>
+			</div>
+			<!--右侧一栏-->
+			<div class="p rightImg">
+				<h2>News Updates</h2>
+				<p class="p1"> 
+					<img src="img/pic/1.gif"/>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+				</p>
+				<p class="p1">
+					<img src="img/pic/2.gif"/>
+					Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam. 
+				</p>
+				<p class="p1 nomargin">
+					<img src="img/pic/3.gif"/>
+					At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium. 
+				</p>
+				<button class="btn">Visit our Blog</button>
+			</div>
+		</div>
+		<!--form 结束-->
+		
+		<!--footer 开始-->
+		<div class="footer">
+			<div class="w">
+				<p class="copy">Copyright 2010. Studio VIVROCKS. All Rights Reserved.</p>
+				<p>Site Powered by Wordpress. Design and Developed by VIVROCKS.</p>
+				<p><a href="#">Home</a> | <a href="#">About</a> | <a href="#">Products</a> | <a href="#">Services</a> | <a href="#">Contact</a></p>
+				<p><a href="#">Privacy Policy</a> | <a href="">Terms of use</a></p>	
+			</div>
+		</div>
+		<!--footer 结束-->
+	</body>
+</html>
